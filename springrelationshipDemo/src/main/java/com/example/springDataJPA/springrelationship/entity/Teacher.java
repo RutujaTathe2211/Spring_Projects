@@ -1,0 +1,39 @@
+package com.example.springDataJPA.springrelationship.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+public class Teacher {
+    @Id
+    //used to generate primary key and monotonically increase//increase integrity of database
+    @SequenceGenerator(
+            name="teacher_sequence",
+            sequenceName = "teacher_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "teacher_sequence"
+    )
+    private Long teacherId;
+    private String firstName;
+    private String lastName;
+//    @OneToMany(
+//            cascade = CascadeType.ALL
+//    )
+//    @JoinColumn(
+//            name="teacher_id",
+//            referencedColumnName = "teacherId"
+//    )
+//    private List<Course> courseList;
+}
